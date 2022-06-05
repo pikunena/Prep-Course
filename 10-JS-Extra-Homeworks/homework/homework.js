@@ -1,6 +1,11 @@
 // No cambies los nombres de las funciones.
 
 function deObjetoAmatriz(objeto){
+ var Nuevoarray = [];
+ for(var clave in objeto){
+   Nuevoarray.push([clave,objeto[clave]]);
+ }
+ return Nuevoarray;
   // Escribe una función que convierta un objeto en una matriz, donde cada elemento representa 
   // un par clave-valor en forma de matriz.
   //Ejemplo: 
@@ -14,6 +19,16 @@ function deObjetoAmatriz(objeto){
 
 
 function numberOfCharacters(string) {
+  var objeto = {};
+  for (let i = 0; i < string.length; i++) {
+    if(objeto.hasOwnProperty(string[i])){
+      objeto[string[i]] = objeto[string[i]] + 1;
+    }else{
+          objeto[string[i]] = 1;
+    }
+
+    
+  }return objeto;
   //La función recibe un string. Recorre el srting y devuelve el caracter con el número de veces que aparece 
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 } 
@@ -22,23 +37,47 @@ function numberOfCharacters(string) {
 
 
 function capToFront(s) {
+  var mayusculas = '';
+  var minusculas = '';
+  for (var i = 0 ; i < s.length ; i++) {
+    if(s[i] === s[i].toLowerCase()){
+      minusculas = minusculas + s[i]; 
+    }else{
+      mayusculas = mayusculas + s[i]
+    }
+    
+  }return mayusculas + minusculas;
+
   //Realiza una función que reciba como parámetro un string y mueva todas las letras mayúsculas
   //al principio de la palabra.
   //Ejemplo: soyHENRY -> HENRYsoy
-  //Escribe tu código aquí
+  //Escribe tu código aquí toLowerCase 
 }
 
 
 function asAmirror(str) {
-  //La función recibe una frase. 
-  //Escribe una función que tome la frase recibida y la devuelva de modo tal que se pueda leer de izquierda a derecha 
-  //pero con cada una de sus palabras invertidas, como si fuera un espejo.
-  //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
-  //Escribe tu código aquí
-} 
+  var strToArray= str.split(' ') //split convierte un string en un array.
+  var arrayfinal = strToArray.map(function(ele){
+       return ele.split('').reverse().join('');
+
+      }); 
+      return  arrayfinal.join(' ');
+      //La función recibe una frase. 
+      //Escribe una función que tome la frase recibida y la devuelva de modo tal que se pueda leer de izquierda a derecha 
+      //pero con cada una de sus palabras invertidas, como si fuera un espejo.
+      //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
+      //Escribe tu código aquí
+    } 
 
 
 function capicua(numero){
+  var NumString = numero.toString();
+  var resultado = NumString.split('').reverse().join(''); 
+  if(NumString === resultado ){
+       return 'Es capicua';
+  }else{
+    return 'No es capicua';
+  }
   //Escribe una función, la cual recibe un número y determina si es o no capicúa.
   //La misma debe retornar: "Es capicua" si el número se número que se lee igual de 
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
@@ -47,6 +86,16 @@ function capicua(numero){
 
 
 function deleteAbc(cadena){
+  var Difabc ='';
+  for(var i = 0 ; i < cadena.length ; i++) {
+    if(cadena[i] === 'a' || cadena[i] === 'b' || cadena[i] === 'c'){
+          continue;
+    }else{
+      Difabc += cadena[i];
+    }
+   
+  }
+  return Difabc; 
   //Define una función que elimine las letras "a", "b" y "c" de la cadena dada 
   //y devuelva la versión modificada o la misma cadena, en caso de contener dichas letras.
   //Escribe tu código aquí
@@ -61,6 +110,19 @@ function sortArray(arr) {
 
 
 function buscoInterseccion(arreglo1, arreglo2){
+  var coincidencias = [];
+  for (var h  = 0; h < arreglo1.length; h ++) {
+  for (var i = 0; i < arreglo2.length; i ++) {
+    if(arreglo1[h] === arreglo2[i]){
+      coincidencias.push(arreglo1[h]);
+    }
+  }
+} 
+return coincidencias; 
+  
+  
+    
+  
   //Existen dos arrays, cada uno con 5 números. A partir de ello, escribir una función que permita 
   //retornar un nuevo array con la intersección de ambos elementos. (Ej: [4,2,3] unión [1,3,4] = [3,4].
   //Si no tienen elementos en común, retornar un arreglo vacío.
